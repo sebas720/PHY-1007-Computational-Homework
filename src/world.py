@@ -132,7 +132,7 @@ class World:
         if not self.wires:
             raise ValueError("Place at least one wire before computing the circuits' fields.")
         else:
-            raise NotImplementedError
+            self._potential =LaplaceEquationSolver().solve(nb_relaxation_iterations)
 
     def show_wires_voltage(self):
         """
