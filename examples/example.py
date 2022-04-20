@@ -14,12 +14,12 @@ if __name__ == "__main__":
         Wire(start=(37, 13), stop=(13, 13), current=Current(x=-1, y=0), voltage=-4.5),
         Wire(start=(13, 13), stop=(13, 25), current=Current(x=0, y=1), voltage=-4.5),
     ]
-        # TODO : Add wires here
 
     circuit = Circuit(wires=WIRES)
 
     world.place(circuit)
 
-    #world.compute()
+    world.compute()
 
     world.show_all()
+    

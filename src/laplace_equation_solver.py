@@ -1,3 +1,5 @@
+from copy import deepcopy
+from socket import IPV6_JOIN_GROUP
 import numpy as np
 
 from src.fields import ScalarField
@@ -40,17 +42,16 @@ class LaplaceEquationSolver:
         """
         
 
-        #for i in range(old_V.shape[0]):
-        #    for j in range(old_V.shape[1]):
-        #        new_V[i, j] = f(old_V[i, j])
-        #return new_V
-
-        #ScalarField(show(constant_voltage))
         
-        new_v = np.zeros((len(constant_voltage.shape[0])+2,len(constant_voltage.shape[1])+2))
-        new_v[1:-1,1:-1] += constant_voltage
-        new_v == 1/4*(constant_voltage[:-2,1:-1] + constant_voltage[2 :, 1 : -1] + constant_voltage[1 : -1, : -2] + constant_voltage[1 : -1, 2 :])
-        for i in range (self.nb_iterations):
-            for x in np.nditer(new_v[:,:]):
         
-                return ScalarField(np.ndarray)
+        potential=np.zeros_like(constant_voltage)
+        
+        for _ in range (self.nb_iterations):
+            new_potential = np.copy(potential)
+    
+            potential[1:-1,1:-1] = 1/4*(new_potential[:-2,1:-1] + potential[2 :, 1 : -1] + new_potential[1 : -1, : -2] + potential[ 1: -1, 2:])
+            
+            potential = np.where(constant_voltage != 0, constant_voltage, potential)
+            
+            M = potential
+        return ScalarField(M)

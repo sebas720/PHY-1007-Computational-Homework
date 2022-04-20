@@ -132,7 +132,12 @@ class World:
         if not self.wires:
             raise ValueError("Place at least one wire before computing the circuits' fields.")
         else:
-            self._potential =LaplaceEquationSolver().solve(nb_relaxation_iterations)
+            self._potential = LaplaceEquationSolver().solve(self._wires_voltage)
+            #self._electric_field = 
+            #self._magnetic_field = BiotSavartEquationSolver().solve(self._wires_current)
+            self._energy_flux = ScalarField().gradient(self._magnetic_field)
+
+            #      Pas encore sur si c'est bon
 
     def show_wires_voltage(self):
         """
